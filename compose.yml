@@ -52,7 +52,7 @@ services:
     extra_hosts:
     - "host.docker.internal:host-gateway"
     volumes:
-    - ./:/var/www/html:cached
+    - $PUBLIC_HTML_DIR:/var/www/html:cached
 ## Alternative for macOS users: Mutagen https://wodby.com/docs/stacks/php/local#docker-for-mac
 #    - backend:/var/www/html
 ## For XHProf and Xdebug profiler traces
@@ -68,9 +68,9 @@ services:
       NGINX_ERROR_LOG_LEVEL: debug
       NGINX_BACKEND_HOST: php
       NGINX_VHOST_PRESET: php
-      NGINX_SERVER_ROOT: /var/www/html/public
+      NGINX_SERVER_ROOT: /var/www/html
     volumes:
-    - ./:/var/www/html:cached
+    - $PUBLIC_HTML_DIR:/var/www/html:cached
 ## Alternative for macOS users: Mutagen https://wodby.com/docs/stacks/php/local#docker-for-mac
 #    - backend:/var/www/html
     labels:
@@ -162,7 +162,7 @@ services:
 #    labels:
 #    - "traefik.http.services.${PROJECT_NAME}_solr.loadbalancer.server.port=8983"
 #    - "traefik.http.routers.${PROJECT_NAME}_solr.rule=Host(`solr.${PROJECT_BASE_URL}`)"
-  
+
 #  opensearch:
 #    image: opensearchproject/opensearch:$OPENSEARCH_TAG
 #    environment:
